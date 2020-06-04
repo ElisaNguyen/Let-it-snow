@@ -1,5 +1,7 @@
+"""Probabilistic L-System to draw snowflakes using Turtle graphics"""
 import turtle
 import random
+import os
 from math import cos, sqrt, radians
 
 
@@ -67,7 +69,7 @@ def draw_branch(t, instructions, it):
     :param instructions: string of instructions to follow
     :param it: current iteration
     """
-    d = 1/(it+1) * 50
+    d = 1 / (it + 1) * 50
     a = 60
     pos = []
     heading = []
@@ -75,18 +77,18 @@ def draw_branch(t, instructions, it):
         if x == "F":
             t.forward(d)
         elif x == "G":
-            t.forward(((it+1)**2)*d)
+            t.forward(((it + 1) * d))
         elif x == "H":
             t.lt(10)
-            t.forward((it+1)*d*0.8)
+            t.forward(d * 0.8)
             t.rt(55)
-            t.forward(sqrt(((d**2)/25)*cos(radians(10))))
+            t.forward(sqrt(((d ** 2) / 25) * cos(radians(10))))
             t.rt(90)
-            t.forward(sqrt(((d**2)/25)*cos(radians(10))))
+            t.forward(sqrt(((d ** 2) / 25) * cos(radians(10))))
             t.rt(55)
-            t.forward((it+1)*d*0.8)
+            t.forward(d * 0.8)
         elif x == "C":
-            r = d/4
+            r = d / 4
             t.circle(r)
         elif x == "+":
             t.lt(a)
@@ -124,10 +126,25 @@ def draw_snowflake(axiom, rules, it):
         t.seth(i * 60)
         draw_branch(t, instructions, it)
     t.penup()
+    save_snowflake("test")
     turtle.done()
+    turtle.bye()
+
+
+def save_snowflake(name):
+    """
+    Function to save the created snowflake as png
+    :param name: string of name
+    """
+    turtle.getscreen().getcanvas().postscript(file=name + '.eps')
+    os.setenv(PATH=paste("C:/Program Files/ImageMagick/bin",
+                          os.getenv("PATH"), sep=";"))
+    convert = "magick convert " + name + ".eps " + name + ".png "
+    os.system(convert)
+
 
 axiom = "XE"
 P = {"X": ["F[--G][++G]X", "F[+GX][-GX]X", "F[+H][-H]X", "F[*GX][/GX]X", "F[--GX][++GX]X", "CX"], "E": ["C", "F", "H"]}
-it = 2
+it = 1
 
 draw_snowflake(axiom, P, it)
