@@ -4,6 +4,7 @@ import random
 from math import cos, sqrt, radians
 import os
 from PIL import Image
+import numpy as np
 
 
 def normal_choice(lst, mean=None, stddev=None):
@@ -107,41 +108,57 @@ def draw_branch(t, instructions, it):
             t.seth(heading.pop())
 
 
-def draw_snowflake(axiom, rules, it):
+def draw_snowflake(axiom, rules, fileName):
     """
-    Function to draw the snowflake with 6 branches
+    Function to draw the snowflake with 6 branches and saves it
     :param axiom: axiom string
     :param rules: rules dictionary
-    :param it: iterations
     """
     t = turtle.Turtle()
     turtle.mode("logo")
     t.ht()
     t.pencolor("black")
     t.pendown()
+    it = random.choice([1, 2, 3])
     instructions = create_instructions(axiom, rules, it)
     print(instructions)
     for i in range(6):
         t.home()
         t.seth(i * 60)
         draw_branch(t, instructions, it)
-    save_snowflake("test")
-    #turtle.done()
-    #turtle.bye()
+    save_snowflake(fileName)
 
 
 def save_snowflake(name):
     """
-    Function to save the created snowflake as png
+    Function to save the created snowflake in white as png
     :param name: string of name
     """
-    turtle.getscreen().getcanvas().postscript(file=name + '.eps')
+    turtle.Screen().getcanvas().postscript(file=name + '.eps')
     command = "mogrify -resize ""400x400"" -transparent white -format png *.eps"
     os.system(command)
 
+    im = Image.open(name + '.png')
+    im = im.convert('RGBA')
 
-axiom = "XE"
-P = {"X": ["F[--G][++G]X", "F[+GX][-GX]X", "F[+H][-H]X", "F[*GX][/GX]X", "F[--GX][++GX]X", "CX"], "E": ["C", "F", "H"]}
-it = 2
+    data = np.array(im)  # "data" is a height x width x 4 numpy array
+    red, green, blue, alpha = data.T  # Temporarily unpack the bands for readability
 
-draw_snowflake(axiom, P, it)
+    # Replace white with red... (leaves alpha values alone...)
+    black_areas = (red == 0) & (blue == 0) & (green == 0)
+    data[..., :-1][black_areas.T] = (255, 255, 255)
+    im2 = Image.fromarray(data)
+    im2.save(name + ".png", "PNG")
+
+
+def create_snowflakes(number):
+    """
+    Function to create a certain number of snowflakes and saved
+    :param number: number of snowflakes to be created
+    """
+    axiom = "XE"
+    P = {"X": ["F[--G][++G]X", "F[+GX][-GX]X", "F[+H][-H]X", "F[*GX][/GX]X", "F[--GX][++GX]X", "CX"],
+         "E": ["C", "F", "H"]}
+    for n in range(number):
+        fileName = "snowflake" + str(n)
+        draw_snowflake(axiom, P, fileName)
