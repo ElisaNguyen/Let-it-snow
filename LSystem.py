@@ -1,8 +1,9 @@
 """Probabilistic L-System to draw snowflakes using Turtle graphics"""
 import turtle
 import random
-import os
 from math import cos, sqrt, radians
+import os
+from PIL import Image
 
 
 def normal_choice(lst, mean=None, stddev=None):
@@ -115,9 +116,8 @@ def draw_snowflake(axiom, rules, it):
     """
     t = turtle.Turtle()
     turtle.mode("logo")
-    turtle.bgcolor("#123d5a")
     t.ht()
-    t.pencolor("white")
+    t.pencolor("black")
     t.pendown()
     instructions = create_instructions(axiom, rules, it)
     print(instructions)
@@ -125,10 +125,9 @@ def draw_snowflake(axiom, rules, it):
         t.home()
         t.seth(i * 60)
         draw_branch(t, instructions, it)
-    t.penup()
     save_snowflake("test")
-    turtle.done()
-    turtle.bye()
+    #turtle.done()
+    #turtle.bye()
 
 
 def save_snowflake(name):
@@ -137,14 +136,12 @@ def save_snowflake(name):
     :param name: string of name
     """
     turtle.getscreen().getcanvas().postscript(file=name + '.eps')
-    os.setenv(PATH=paste("C:/Program Files/ImageMagick/bin",
-                          os.getenv("PATH"), sep=";"))
-    convert = "magick convert " + name + ".eps " + name + ".png "
-    os.system(convert)
+    command = "mogrify -resize ""400x400"" -transparent white -format png *.eps"
+    os.system(command)
 
 
 axiom = "XE"
 P = {"X": ["F[--G][++G]X", "F[+GX][-GX]X", "F[+H][-H]X", "F[*GX][/GX]X", "F[--GX][++GX]X", "CX"], "E": ["C", "F", "H"]}
-it = 1
+it = 2
 
 draw_snowflake(axiom, P, it)
