@@ -4,28 +4,33 @@ import LSystem
 import pygame
 import random
 
-screen_width = 500
-screen_height = 500
+screen_width = 1000
+screen_height = 600
 
 
 class Snowflake:
     """Each instance of this class is a single snowflake"""
 
-    def __init__(self, i):
+    def __init__(self, index):
         self.xPos = random.choice(range(0, screen_width))
         self.yPos = random.choice(range(0, screen_height))
         self.speedX = random.choice(range(-2, 2))
-        self.width = random.choice(range(0, 10))
+        self.width = random.choice(range(20, 100))
         self.height = self.width
-        self.shape = pygame.image.load(LSystem.create_snowflake(i)).convert_alpha()
+        shape = pygame.image.load(LSystem.create_snowflake(index)).convert_alpha()
+        shape = pygame.transform.scale(shape, (self.width, self.height))
+        self.shape = shape
 
 pygame.init()
+
 SIZE = [screen_width, screen_height]
-BLACK = [0, 0, 0]
-WHITE = [255, 255, 255]
 
 screen = pygame.display.set_mode(SIZE)
-pygame.display.set_caption("Snow Animation")
+pygame.display.set_caption("Let it snow")
+
+# background image
+bg = pygame.image.load('background.jpg').convert()
+bg = pygame.transform.scale(bg, (screen_width, screen_height))
 
 # Create an empty array to fill with snowflakes
 snow_list = []
@@ -45,7 +50,7 @@ while not done:
             done = True  # Flag that we are done so we exit this loop
 
     # Set the screen background
-    screen.fill(BLACK)
+    screen.blit(bg, [0, 0])
 
     # Process each snow flake in the list
     for i in range(len(snow_list)):
