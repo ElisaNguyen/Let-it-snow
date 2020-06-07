@@ -147,8 +147,17 @@ def save_snowflake(name):
     # Replace white with red... (leaves alpha values alone...)
     black_areas = (red == 0) & (blue == 0) & (green == 0)
     data[..., :-1][black_areas.T] = (255, 255, 255)
-    im2 = Image.fromarray(data)
-    im2.save(name + ".png", "PNG")
+    #im2 = Image.fromarray(data)
+    image_data_bw = data.take(3, axis=2)
+    non_empty_columns = np.where(image_data_bw.max(axis=0) > 0)[0]
+    non_empty_rows = np.where(image_data_bw.max(axis=1) > 0)[0]
+    cropBox = (min(non_empty_rows), max(non_empty_rows), min(non_empty_columns), max(non_empty_columns))
+
+    image_data_new = data[cropBox[0]:cropBox[1] + 1, cropBox[2]:cropBox[3] + 1, :]
+
+    new_image = Image.fromarray(image_data_new)
+    new_image.save(name + ".png", "PNG")
+    #im2.save(name + ".png", "PNG")
 
 
 def create_snowflakes(number):
