@@ -1,4 +1,5 @@
-"""Animate the created snowflakes as falling snow"""
+"""Animate the created snowflakes as falling snow
+inspiration: http://programarcadegames.com/python_examples/f.php?file=animating_snow.py"""
 import LSystem
 import pygame
 import random
@@ -10,13 +11,13 @@ screen_height = 500
 class Snowflake:
     """Each instance of this class is a single snowflake"""
 
-    def __init__(self):
+    def __init__(self, i):
         self.xPos = random.choice(range(0, screen_width))
         self.yPos = random.choice(range(0, screen_height))
         self.speedX = random.choice(range(-2, 2))
         self.width = random.choice(range(0, 10))
         self.height = self.width
-        self.shape = None
+        self.shape = pygame.image.load(LSystem.create_snowflake(i)).convert_alpha()
 
 pygame.init()
 SIZE = [screen_width, screen_height]
@@ -30,12 +31,8 @@ pygame.display.set_caption("Snow Animation")
 snow_list = []
 
 # Loop 50 times and add a snowflake from class snowflake
-for i in range(3):
-    snow_list.append(Snowflake())
-
-print(snow_list)
-# create 50 snowflakes
-LSystem.create_snowflakes(3)
+for i in range(2):
+    snow_list.append(Snowflake(i))
 
 clock = pygame.time.Clock()
 
@@ -52,10 +49,6 @@ while not done:
 
     # Process each snow flake in the list
     for i in range(len(snow_list)):
-
-        # Get the snowflake image
-        snow_list[i].shape = pygame.image.load('snowflake' + str(i) + '.png').convert_alpha()
-
         # Move the snow flake
         snow_list[i].xPos += snow_list[i].speedX
         snow_list[i].yPos += 1

@@ -135,6 +135,7 @@ def save_snowflake(name):
     :param name: string of name
     """
     turtle.Screen().getcanvas().postscript(file=name + '.eps')
+    turtle.Screen().clear()
     command = "mogrify -resize ""400x400"" -transparent white -format png *.eps"
     os.system(command)
 
@@ -147,7 +148,6 @@ def save_snowflake(name):
     # Replace white with red... (leaves alpha values alone...)
     black_areas = (red == 0) & (blue == 0) & (green == 0)
     data[..., :-1][black_areas.T] = (255, 255, 255)
-    #im2 = Image.fromarray(data)
     image_data_bw = data.take(3, axis=2)
     non_empty_columns = np.where(image_data_bw.max(axis=0) > 0)[0]
     non_empty_rows = np.where(image_data_bw.max(axis=1) > 0)[0]
@@ -157,17 +157,16 @@ def save_snowflake(name):
 
     new_image = Image.fromarray(image_data_new)
     new_image.save(name + ".png", "PNG")
-    #im2.save(name + ".png", "PNG")
 
 
-def create_snowflakes(number):
+def create_snowflake(index):
     """
-    Function to create a certain number of snowflakes and saved
-    :param number: number of snowflakes to be created
+    Function to create one snowflake and save it and return the image
+    :param index: index of the snowflake
     """
     axiom = "XE"
     P = {"X": ["F[--G][++G]X", "F[+GX][-GX]X", "F[+H][-H]X", "F[*GX][/GX]X", "F[--GX][++GX]X", "CX"],
          "E": ["C", "F", "H"]}
-    for n in range(number):
-        fileName = "snowflake" + str(n)
-        draw_snowflake(axiom, P, fileName)
+    fileName = "snowflake" + str(index)
+    draw_snowflake(axiom, P, fileName)
+    return fileName + '.png'
