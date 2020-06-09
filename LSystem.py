@@ -113,11 +113,12 @@ def draw_snowflake(axiom, rules, fileName):
     Function to draw the snowflake with 6 branches and saves it
     :param axiom: axiom string
     :param rules: rules dictionary
+    :param fileName: string
     """
     t = turtle.Turtle()
     turtle.mode("logo")
     t.ht()
-    t.pencolor("black")
+    t.speed("fastest")
     t.pendown()
     it = random.choice([1, 2, 3])
     instructions = create_instructions(axiom, rules, it)
