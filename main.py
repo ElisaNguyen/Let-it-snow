@@ -12,13 +12,8 @@ def home():
 
 @app.route('/', methods=["POST"])
 def let_it_snow():
-    animation.let_it_snow(2)
+    animation.let_it_snow(3)
     return render_template("home.html")
-
-
-@app.route('/math_bg')
-def math_bg():
-    return render_template("math_background.html")
 
 
 if __name__ == "__main__":

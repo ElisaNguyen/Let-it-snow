@@ -71,7 +71,7 @@ def draw_branch(t, instructions, it):
     :param instructions: string of instructions to follow
     :param it: current iteration
     """
-    d = 1 / (it + 1) * 50
+    d = 1 / (it + 1) * 200
     a = 60
     pos = []
     heading = []
@@ -120,9 +120,9 @@ def draw_snowflake(axiom, rules, fileName):
     t.ht()
     t.speed("fastest")
     t.pendown()
+    t.width(3)
     it = random.choice([1, 2, 3])
     instructions = create_instructions(axiom, rules, it)
-    print(instructions)
     for i in range(6):
         t.home()
         t.seth(i * 60)
@@ -166,7 +166,7 @@ def create_snowflake(index):
     :param index: index of the snowflake
     """
     axiom = "XE"
-    P = {"X": ["F[--G][++G]X", "F[+GX][-GX]X", "F[+H][-H]X", "F[*GX][/GX]X", "F[--GX][++GX]X", "CX"],
+    P = {"X": ["F[--F][++F]X", "F[+FX][-FX]X", "F[+H][-H]X", "F[*FX][/FX]X", "F[--FX][++FX]X", "CX"],
          "E": ["C", "F", "H"]}
     fileName = "snowflake" + str(index)
     draw_snowflake(axiom, P, fileName)

@@ -1,6 +1,8 @@
 """Animate the created snowflakes as falling snow"""
+import os
 import turtle
 from LSystem import create_snowflake
+os.environ["SDL_VIDEODRIVER"] = "dummy"
 import pygame
 import random
 
@@ -11,17 +13,31 @@ class Snowflake(pygame.sprite.Sprite):
     def __init__(self, index, screen_width, screen_height):
         pygame.sprite.Sprite.__init__(self)
         shape = pygame.image.load(create_snowflake(index)).convert_alpha()
-        self.width = random.choice(range(20, 100))
+        self.width = random.choice(range(20, 80))
         self.height = self.width
-        shape = pygame.transform.scale(shape, (self.width, self.height))
-        self.image = shape
+        self.index = index
+        self.image = pygame.transform.scale(shape, (self.width, self.height))
         self.rect = self.image.get_rect()
         self.rect.x = random.uniform(0, screen_width)
         self.rect.y = random.uniform(0, screen_height)
         self.speedX = random.uniform(-2, 2)
+        self.melt = False
+        self.alpha = 255
 
-    def move(self, screen_width, screen_height):
+    def update(self, screen_width, screen_height):
         self.rect.x += self.speedX
+        if self.melt:  # If the fade effect is activated.
+            # Reduce the alpha each frame, create a new copy of the original
+            # image and fill it with white (with the self.alpha value)
+            # and pass the BLEND_RGBA_MULT special_flag to reduce the alpha.
+            self.alpha = max(0, self.alpha - 2)  # alpha should never be < 0.
+            self.image.fill((255, 255, 255, self.alpha), special_flags=pygame.BLEND_RGBA_MULT)
+            if self.alpha <= 0:  # move it back up
+                self.rect.y = screen_height + 1
+                self.alpha = 255
+                self.melt = False
+                image = pygame.image.load('snowflake' + str(self.index) + '.png')
+                self.image = pygame.transform.scale(image, (self.width, self.height))
         if self.rect.y > screen_height:
             # Reset it just above the top
             y = random.randrange(-50, -10)
@@ -36,10 +52,8 @@ class Snowflake(pygame.sprite.Sprite):
         return pygame.mouse.get_pressed()[0] and self.rect.collidepoint(pygame.mouse.get_pos())
 
     def zoom(self):
-        self.image = pygame.transform.scale(self.image, (150, 150))
-
-    def zoomout(self):
-        self.image = pygame.transform.scale(self.image, (self.width, self.height))
+        image = pygame.image.load('snowflake' + str(self.index) + '.png')
+        self.image = pygame.transform.scale(image, (150, 150))
 
 
 def let_it_snow(num_snowflakes):
@@ -81,9 +95,9 @@ def let_it_snow(num_snowflakes):
 
         for snowflake in snow_sprites:
             if snowflake.is_clicked():
-                print('yes')
                 snowflake.zoom()
-            snowflake.move(screen_width, screen_height)
+                snowflake.melt = True
+            snowflake.update(screen_width, screen_height)
 
         # Go ahead and update the screen with what we've drawn.
         pygame.display.flip()

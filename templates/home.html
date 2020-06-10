@@ -1,30 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Masterpiece Elisa Nguyen</title>
-    <link rel="stylesheet" type="text/css" href="static/css/mystyle.css">
+  <meta charset="utf-8">
+  <title>Let it snow</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="static/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+    Theme Name: Regna
+    Theme URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
 </head>
+
 <body>
-    <h1>Snowflake generation using probabilistic L-systems</h1>
-    <h3>Art, Mathematics and Technology Masterpiece by Elisa Nguyen (s2399423)</h3>
-    <p>Snowflakes are a beautiful creation from nature. Due to the dipole behaviour of water molecules and the
-        arrangement of the oxygen and hydrogen atoms, snowflakes are made up of a grid structure that results in
-        symmetrical growth along 6 axis arranged in a hexagon. As there are numerous parameters influencing the shape of
-        the snowflake (temperature, humidity, pressure, ...) as they fall down from the sky, it is said that every
-        snowflake is unique.</p>
 
-    <p>This artwork shall capture the perfect symmetry and uniqueness of snowflakes by modelling them in
-        a probabilistic L-system and animating snowfall in a clear winter sky.</p>
+  <!--==========================
+  Header
+  ============================-->
+  <header id="header">
+    <div class="container">
 
-    <p>By clicking the button, you can let it snow. 2 windows will appear, one where you can see one by one how the
-        snowflakes are drawn, and the other one displaying the final masterpiece once all snowflakes have been
-        generated.</p>
+      <div id="logo" class="pull-left">
+        <a href="#hero"><img src="static/css/UT_Logo_2400_Sta_White_EN.png" alt="" title="" width="150px" height="53px" /></img></a>
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!--<h1><a href="#hero">Regna</a></h1>-->
+      </div>
 
-    <form action="/" method="post">
-        <button name="generateBtn" type="submit">Let it snow</button>
-    </form>
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#hero">Home</a></li>
+          <li><a href="#about">Inspiration</a></li>
+          <li><a href="#services">Shape model</a></li>
+          <li><a href="#portfolio">Motion model</a></li>
+          <li><a href="#call-to-action">Artwork</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
 
+  <!--==========================
+    Hero Section
+  ============================-->
+  <section id="hero">
+    <div class="hero-container">
+      <h1>Let it snow</h1>
+      <h2>Art, Mathematics and Technology - Elisa Nguyen</h2>
+      <a href="#about" class="btn-get-started">Let me introduce you...</a>
+    </div>
+  </section><!-- #hero -->
+
+  <main id="main">
+
+    <!--==========================
+      About Us Section
+    ============================-->
+    <section id="about">
+      <div class="container">
+        <div class="row about-container">
+
+          <div class="col-lg-6 content order-lg-1 order-2">
+            <h2 class="title">...to my inspiration</h2>
+            <p>
+              Snowflakes are a beautiful creation from nature. Due to the dipole behaviour of water molecules and the arrangement of the oxygen and hydrogen atoms, snowflakes are made up of a grid structure that results in symmetrical growth along 6 axis arranged in a hexagon. As there are numerous parameters influencing the shape of the snowflake (temperature, humidity, pressure, ...) as they fall down from the sky, it is said that every snowflake is unique.
+            </p>
+
+           </div>
+        </div>
+
+      </div>
+    </section><!-- #about -->
+
+    <!--==========================
+      Services Section
+    ============================-->
+    <section id="services">
+      <div class="container wow fadeIn">
+        <div class="section-header">
+          <h3 class="section-title">...to the mathematical model for the snowflake shape</h3>
+          <p class="section-description">The shape has been created using a symmetrical probabilistic L-system</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="box">
+              <div class="icon"><i class="fa fa-desktop"></i></div>
+              <h4 class="title">L-system</h4>
+              <p class="description">
+                The L-system is a system of rules that results in patterns when translated. The used L-system is the following for drawing one snowflake-branch.
+                INSERT PICTURE FROM LATEX
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+            <div class="box">
+              <div class="icon"><i class="fa fa-bar-chart"></i></div>
+              <h4 class="title">Probability</h4>
+              <p class="description">
+                The production rules P are chosen based on a normal distribution. This ensures the snowflakes are different, but generally similar.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+            <div class="box">
+              <div class="icon"><i class="fa fa-photo"></i></div>
+              <h4 class="title">Symmetry</h4>
+              <p class="description">
+                The generated branch is 6 times, each time rotating 60 degrees more. This results in a rotational symmetry group of size 6, and often of an additional reflective symmetry group as well.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- #services -->
+
+    <!--==========================
+      Portfolio Section
+    ============================-->
+    <section id="portfolio">
+      <div class="container wow fadeInUp">
+        <div class="section-header">
+          <h3 class="section-title">...to the mathematical model of snowfall motion</h3>
+          <p class="section-description">Snowflakes do not fall straight from the sky. Due to their light weight, they move also in a horizontal direction while falling down.</p>
+        </div>
+
+      </div>
+    </section><!-- #portfolio -->
+
+    <!--==========================
+    Call To Action Section
+    ============================-->
+    <section id="call-to-action">
+      <div class="container wow fadeIn">
+        <div class="row">
+          <div class="col-lg-9 text-center text-lg-left">
+            <h3 class="cta-title">...to the artwork</h3>
+            <p class="cta-text">
+              The artwork is an interactive animation that generates a number of different snowflake patterns resulting from the probabilistic L-system and depicts these as falling snow. The user can interact with the application by clicking on snowflakes to inspect them more closely. However, the snowflake will disappear shortly after, as it melts from the body heat.
+              By clicking the button, you can let it snow. 2 windows will appear, one where you can see one by one how the snowflakes are drawn, and the other one displaying the final masterpiece once all snowflakes have been generated.
+          </p>
+          </div>
+          <div class="col-lg-3 cta-btn-container text-center">
+            <form action="/" method="post">
+              <button class="cta-btn align-middle">Let it snow</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- #call-to-action -->
+
+  </main>
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        Design &copy; Copyright <strong>Regna</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Regna
+        -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/counterup/counterup.min.js"></script>
+  <script src="lib/superfish/hoverIntent.js"></script>
+  <script src="lib/superfish/superfish.min.js"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
 
 </body>
 </html>
