@@ -40,18 +40,18 @@
   <header id="header">
     <div class="container">
 
-      <div id="logo" class="pull-left">
-        <a href="#hero"><img src="static/css/UT_Logo_2400_Sta_White_EN.png" alt="" title="" width="150px" height="53px" /></img></a>
+      <div id="logo" style="margin-left: 75px; margin-right: 75px">
+        <a href="#hero"><img src="static/css/UT_Logo_2400_Sta_White_EN.png" alt="" title="" width="138px" height="69px" /></img></a>
         <!-- Uncomment below if you prefer to use a text logo -->
         <!--<h1><a href="#hero">Regna</a></h1>-->
       </div>
 
-      <nav id="nav-menu-container">
+      <nav id="nav-menu-container" style="margin-left: 75px; margin-right: 75px;background-color: rgba(52, 59, 64, 0.9)">
         <ul class="nav-menu">
           <li class="menu-active"><a href="#hero">Home</a></li>
           <li><a href="#about">Inspiration</a></li>
-          <li><a href="#services">Shape model</a></li>
-          <li><a href="#portfolio">Motion model</a></li>
+          <li><a href="#shape">Shape model</a></li>
+          <li><a href="#motion">Motion model</a></li>
           <li><a href="#call-to-action">Artwork</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
@@ -66,6 +66,7 @@
       <h1>Let it snow</h1>
       <h2>Art, Mathematics and Technology - Elisa Nguyen</h2>
       <a href="#about" class="btn-get-started">Let me introduce you...</a>
+      <a href="static/css/Poster_Masterpiece.pdf" download="amt_poster_s2399423.pdf" class="btn-get-started">Poster Download</a>
     </div>
   </section><!-- #hero -->
 
@@ -76,17 +77,15 @@
     ============================-->
     <section id="about">
       <div class="container">
-        <div class="row about-container">
-
-          <div class="col-lg-6 content order-lg-1 order-2">
+        <div class="about-container" style="margin-left: 75px; margin-right: 30px; width: 55%; float: left" >
             <h2 class="title">...to my inspiration</h2>
             <p>
               Snowflakes are a beautiful creation from nature. Due to the dipole behaviour of water molecules and the arrangement of the oxygen and hydrogen atoms, snowflakes are made up of a grid structure that results in symmetrical growth along 6 axis arranged in a hexagon. As there are numerous parameters influencing the shape of the snowflake (temperature, humidity, pressure, ...) as they fall down from the sky, it is said that every snowflake is unique.
             </p>
-
-           </div>
         </div>
-
+        <div style="width: 30%; float: right; margin-right: 75px">
+          <img src="static/css/molecules.jpg" width="350px">
+        </div>
       </div>
     </section><!-- #about -->
 
@@ -95,30 +94,34 @@
     ============================-->
     <section id="services">
       <div class="container wow fadeIn">
-        <div class="section-header">
-          <h3 class="section-title">...to the mathematical model for the snowflake shape</h3>
-          <p class="section-description">
+        <div class="section-header" style="width: 100%; margin-top: 150px">
+          <h3 class="section-title" id="shape">...to the mathematical model for the snowflake shape</h3>
+          <p class="section-description" style="margin-left: 75px; margin-right: 75px">
             The shape has been created using a symmetrical probabilistic L-system. This video shows the generation process.
           </p>
-          <p class="section-description">
-            <video width="320" height="240" controls>
+          <div style="margin-left: 250px;float: left;width: 40%">
+            <img src="static/css/lsystem.PNG" width="60%">
+          </div>
+          <p class="section-description" style="width: 30%;float: left;">
+            <video width="400" height="230" controls>
               <source src="static/css/generation.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
           </p>
         </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+        <div class="row" style="margin-right: 75px; margin-left: 75px;margin-bottom: 50px">
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s" style="width: 30%; float: left; margin-right: 5%">
             <div class="box">
               <div class="icon"><i class="fa fa-desktop"></i></div>
               <h4 class="title">L-system</h4>
               <p class="description">
-                The L-system is a system of rules that results in patterns when translated. The used L-system is the following for drawing one snowflake-branch.
-                INSERT PICTURE FROM LATEX
+                The L-system is a system of rules that results in patterns when translated. The used L-system for drawing one snowflake-branch is shown above.
+                The new rules H and C are corresponding the following shapes respectively.<br>
+                <img src="static/css/H.PNG" height="50px"><img src="static/css/C.PNG" height="50px">
               </p>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s" style="width: 30%;float: left; margin-right: 5%">
             <div class="box">
               <div class="icon"><i class="fa fa-bar-chart"></i></div>
               <h4 class="title">Probability</h4>
@@ -127,7 +130,7 @@
               </p>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s" style="width: 30%; float: left">
             <div class="box">
               <div class="icon"><i class="fa fa-photo"></i></div>
               <h4 class="title">Symmetry</h4>
@@ -146,9 +149,29 @@
     ============================-->
     <section id="portfolio">
       <div class="container wow fadeInUp">
-        <div class="section-header">
-          <h3 class="section-title">...to the mathematical model of snowfall motion</h3>
-          <p class="section-description">Snowflakes do not fall straight from the sky. Due to their light weight, they move also in a horizontal direction while falling down.</p>
+        <div class="section-header" style="width:90%;margin-top: 500px;margin-left: 75px;margin-right: 75px">
+          <h3 class="section-title" id="motion">...to the mathematical model of snowfall motion</h3>
+          <p class="section-description" >
+            Snowflakes do not fall straight from the sky. Due to their light weight,
+            they move also in a horizontal direction while falling down.
+            This is ensured by assigning a new position to each snowflake at each frame, according to the pseudo-code method below.</p>
+          <code>
+            <pre>
+            class Snowflake
+              private width = random(range(20,80))
+              private height = width
+              private image = load_snowflake_image
+              private x = random(range(0, screen_width))
+              private y = random(range(0, screen_height))
+              private speedX = random(range(-2,2))
+
+              method update_position(snowflake):
+                snowflake.x = snowflake.x + snowflake.speedX
+                snowflake.y = snowflake.y + 1
+                if snowflake.y > screen_height: //if the snowflake fell to the ground
+                  snowflake.y = -30            //position the snowflake above the screen
+            </pre>
+          </code>
         </div>
 
       </div>
@@ -159,18 +182,20 @@
     ============================-->
     <section id="call-to-action">
       <div class="container wow fadeIn">
-        <div class="row">
+        <div class="row" style="margin-right: 75px; margin-left: 75px">
           <div class="col-lg-9 text-center text-lg-left">
             <h3 class="cta-title">...to the artwork</h3>
             <p class="cta-text">
               The artwork is an interactive animation that generates a number of different snowflake patterns resulting from the probabilistic L-system and depicts these as falling snow. The user can interact with the application by clicking on snowflakes to inspect them more closely. However, the snowflake will disappear shortly after, as it melts from the body heat.
+            </p>
+            <p class="cta-text">
               By clicking the button, you can download the artwork. It contains an executable and the snowflake images.
-          </p>
+            </p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
-            <form method="get" action="letitsnow.zip">
+            <a href="/static/letitsnow.zip" download="letitsnow.zip">
               <button class="cta-btn align-middle">Download "Let it snow"</button>
-            </form>
+            </a>
           </div>
         </div>
 
