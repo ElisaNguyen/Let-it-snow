@@ -106,3 +106,5 @@ def let_it_snow():
     # Be IDLE friendly. If you forget this line, the program will 'hang'
     # on exit.
     pygame.quit()
+
+let_it_snow()

@@ -1,9 +1,0 @@
-gunicorn==19.7.1
-flask
-turtle
-pygame
-random
-pillow
-math
-numpy
-os
