@@ -78,8 +78,6 @@ def draw_branch(t, instructions, it):
     for x in instructions:
         if x == "F":
             t.forward(d)
-        elif x == "G":
-            t.forward(((it + 1) * d))
         elif x == "H":
             t.lt(10)
             t.forward(d * 0.8)

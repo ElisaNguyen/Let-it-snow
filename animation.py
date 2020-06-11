@@ -1,8 +1,8 @@
 """Animate the created snowflakes as falling snow"""
 import os
-import turtle
-from LSystem import create_snowflake
-os.environ["SDL_VIDEODRIVER"] = "dummy"
+#import turtle
+#from LSystem import create_snowflake
+#os.environ["SDL_VIDEODRIVER"] = "dummy"
 import pygame
 import random
 
@@ -12,7 +12,7 @@ class Snowflake(pygame.sprite.Sprite):
 
     def __init__(self, index, screen_width, screen_height):
         pygame.sprite.Sprite.__init__(self)
-        shape = pygame.image.load(create_snowflake(index)).convert_alpha()
+        shape = pygame.image.load('snowflake' + str(index) + '.png').convert_alpha()
         self.width = random.choice(range(20, 80))
         self.height = self.width
         self.index = index
@@ -56,7 +56,7 @@ class Snowflake(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(image, (150, 150))
 
 
-def let_it_snow(num_snowflakes):
+def let_it_snow():
     screen_width = 1000
     screen_height = 600
     pygame.init()
@@ -73,8 +73,8 @@ def let_it_snow(num_snowflakes):
     # Create a sprite groups for the snowflakes
     snow_sprites = pygame.sprite.Group()
 
-    # Loop num_snowflakes times and add a snowflake sprite
-    for i in range(num_snowflakes):
+    # Loop 80 times and add a snowflake sprite
+    for i in range(80):
         snow_sprites.add(Snowflake(i, screen_width, screen_height))
 
     clock = pygame.time.Clock()
@@ -106,5 +106,3 @@ def let_it_snow(num_snowflakes):
     # Be IDLE friendly. If you forget this line, the program will 'hang'
     # on exit.
     pygame.quit()
-    turtle.done()
-

@@ -12,7 +12,7 @@ def home():
 
 @app.route('/', methods=["POST"])
 def let_it_snow():
-    animation.let_it_snow(3)
+    animation.let_it_snow()
     return render_template("home.html")
 
 
