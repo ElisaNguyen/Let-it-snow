@@ -11,4 +11,4 @@ To start the application, run the main.py file.
 ### Dependencies 
 The application uses <code>python-3.7.6</code> and is based on the <code>turtle</code> and <code>pygame</code> libraries. For image processing, also the <code>pillow</code> is needed.
 
-If you would like to know more about inspiration and mathematics behind the application, visit <a href="elisanguyen.pythonanywhere.com">this website</a>.
+If you would like to know more about inspiration and mathematics behind the application, visit <a href="http://elisanguyen.pythonanywhere.com">this website</a>.
