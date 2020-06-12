@@ -12,7 +12,7 @@ class Snowflake(pygame.sprite.Sprite):
 
     def __init__(self, index, screen_width, screen_height):
         pygame.sprite.Sprite.__init__(self)
-        shape = pygame.image.load('snowflake' + str(index) + '.png').convert_alpha()
+        shape = pygame.image.load('/images/snowflake' + str(index) + '.png').convert_alpha()
         self.width = random.choice(range(20, 80))
         self.height = self.width
         self.index = index
@@ -36,7 +36,7 @@ class Snowflake(pygame.sprite.Sprite):
                 self.rect.y = screen_height + 1
                 self.alpha = 255
                 self.melt = False
-                image = pygame.image.load('snowflake' + str(self.index) + '.png')
+                image = pygame.image.load('/images/snowflake' + str(self.index) + '.png')
                 self.image = pygame.transform.scale(image, (self.width, self.height))
         if self.rect.y > screen_height:
             # Reset it just above the top
@@ -52,7 +52,7 @@ class Snowflake(pygame.sprite.Sprite):
         return pygame.mouse.get_pressed()[0] and self.rect.collidepoint(pygame.mouse.get_pos())
 
     def zoom(self):
-        image = pygame.image.load('snowflake' + str(self.index) + '.png')
+        image = pygame.image.load('/images/snowflake' + str(self.index) + '.png')
         self.image = pygame.transform.scale(image, (150, 150))
 
 
@@ -67,7 +67,7 @@ def let_it_snow():
     pygame.display.set_caption("Let it snow")
 
     # background image
-    bg = pygame.image.load('background.jpg').convert()
+    bg = pygame.image.load('/images/background.jpg').convert()
     bg = pygame.transform.scale(bg, (screen_width, screen_height))
 
     # Create a sprite groups for the snowflakes

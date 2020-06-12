@@ -133,7 +133,7 @@ def save_snowflake(name):
     Function to save the created snowflake in white as png
     :param name: string of name
     """
-    turtle.Screen().getcanvas().postscript(file=name + '.eps')
+    turtle.Screen().getcanvas().postscript(file='/images/' + name + '.eps')
     turtle.Screen().clear()
     command = "mogrify -resize ""400x400"" -transparent white -format png *.eps"
     os.system(command)
@@ -155,7 +155,7 @@ def save_snowflake(name):
     image_data_new = data[cropBox[0]:cropBox[1] + 1, cropBox[2]:cropBox[3] + 1, :]
 
     new_image = Image.fromarray(image_data_new)
-    new_image.save(name + ".png", "PNG")
+    new_image.save('/images/' + name + ".png", "PNG")
 
 
 def create_snowflake(index):
